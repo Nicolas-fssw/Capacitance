@@ -1,0 +1,6 @@
+{
+    "app_name": "Force Hammer",
+    "author": "Ananth Yalamarthy",
+    "main_module": "src/main/python/main.py",
+    "version": "0.0.0"
+}

@@ -1,0 +1,8 @@
+Item,Value
+CapLo,1.9
+CapHi,2.1
+LossLo,1
+LossHi,3
+DefaultVoltage,1
+DefaultFrequency,1000
+DefaultNumMeas,1
