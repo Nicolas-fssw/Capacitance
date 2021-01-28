@@ -290,7 +290,7 @@ class Cap_Test(QtWidgets.QMainWindow):
         try:
             writer.book = load_workbook(dir_path + saveName)
         except:
-            print('File does not already exist')
+            print('Writting new file')
         
         summary = pd.DataFrame({saveName : ['Max Capacitance', 'Min Capacitance', 'Average Capacitance', 'STD Capacitance',
                                            'Max Loss', 'Min Loss', 'Average Loss', 'STD Loss'],
