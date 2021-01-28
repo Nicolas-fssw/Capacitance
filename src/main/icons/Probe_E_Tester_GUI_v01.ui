@@ -1097,7 +1097,7 @@
            </widget>
           </item>
           <item row="2" column="0" colspan="2">
-           <widget class="QLabel" name="label_7">
+           <widget class="QLabel" name="state">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
