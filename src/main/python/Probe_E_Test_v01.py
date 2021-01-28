@@ -84,7 +84,10 @@ class Cap_Test(QtWidgets.QMainWindow):
                 font.setPointSize(14)
                 font.setBold(True)
                 self.tableWidget_LossArray.item(i, j).setFont(font)
-
+        
+        self.state.setText('Not Saved') #save indicator
+        self.state.setStyleSheet("background-color: yellow;  border: 1px solid black;")         
+         
         self.Run.clicked.connect(self.measureImpArray)
         self.save_ImpArray.clicked.connect(self.name_construction)
 
@@ -128,6 +131,10 @@ class Cap_Test(QtWidgets.QMainWindow):
 
     
     def measureImpArray(self): 
+        
+        self.state.setText('Not Saved') #save indicator
+        self.state.setStyleSheet("background-color: yellow;  border: 1px solid black;")
+        
         self.Cap_Array = []
         self.Loss_Array = []
         self.graphWidget_CapHistogram.clear() 
@@ -268,16 +275,22 @@ class Cap_Test(QtWidgets.QMainWindow):
                 break
             except PermissionError:
                 return None
-        if path.exists(dir_path + saveName): #testing if file already exists
+        if path.exists(dir_path + saveName): #testing if sheet already exists
             xls = xlrd.open_workbook(dir_path + saveName, on_demand=True)
             if tag in xls.sheet_names():
                 self.state.setText('Warning: File already exists')
                 self.state.setStyleSheet("background-color: red;  border: 1px solid black;") 
                 return None
+            
           
         print('Saving: ' + str(saveName) + ' ' + str(tag) + ' Capacitance Test')
         
-        writer = pd.ExcelWriter(dir_path + saveName, engine='xlsxwriter')
+        writer = pd.ExcelWriter(dir_path + saveName, engine='openpyxl')
+
+        try:
+            writer.book = load_workbook(dir_path + saveName)
+        except:
+            print('File does not already exist')
         
         summary = pd.DataFrame({saveName : ['Max Capacitance', 'Min Capacitance', 'Average Capacitance', 'STD Capacitance',
                                            'Max Loss', 'Min Loss', 'Average Loss', 'STD Loss'],
@@ -294,8 +307,8 @@ class Cap_Test(QtWidgets.QMainWindow):
         writer.save()
         print('**************************')
         print('Finished Saving')
-        self.warning_label.setText('Saved File')
-        self.warning_label.setStyleSheet("background-color: green;  border: 1px solid black;")
+        self.state.setText('Saved File')
+        self.state.setStyleSheet("background-color: green;  border: 1px solid black;")
         
         self.w.hide()
              
