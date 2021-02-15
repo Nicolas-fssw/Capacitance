@@ -68,5 +68,5 @@ def main(arg, inst_ID):
     make_contact(switch_matrix,channel,switch_number)
     time.sleep(0.5)
     (Cap, Loss) = get_impedance_data(hioki,voltage,frequency,num)
-    break_contact(switch_matrix,1,switch_number)
+    break_contact(switch_matrix,channel,switch_number)
     return (Cap, Loss)
