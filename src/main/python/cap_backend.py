@@ -64,6 +64,7 @@ def main(arg, inst_ID):
     num = int(arg[2])
     switch_number = int(arg[3])
     channel = int(arg[4])
+    print("Switch: " + str(switch_number), "Channel: " + str(channel))
     make_contact(switch_matrix,channel,switch_number)
     time.sleep(0.5)
     (Cap, Loss) = get_impedance_data(hioki,voltage,frequency,num)
