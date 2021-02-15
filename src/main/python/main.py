@@ -11,6 +11,7 @@ class AppContext(ApplicationContext):
 
     def get_design(self):
         qtCreatorFile = self.get_resource("Probe_E_Tester_GUI_v01.ui")
+        # saveFile = self.get_resource("SaveWindow.ui")
         return qtCreatorFile
 
     def get_connections(self):

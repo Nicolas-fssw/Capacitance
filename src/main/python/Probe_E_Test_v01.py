@@ -11,12 +11,23 @@ import pandas as pd
 from openpyxl import load_workbook
 from os import path
 import xlrd
+import math
 
 
 class SAVEWINDOW(QtWidgets.QMainWindow):                           # <===
     def __init__(self):
         super(SAVEWINDOW, self).__init__()
-        uic.loadUi('SaveWindow.ui', self) 
+        
+        my_absolute_dirpath = os.path.abspath(os.path.dirname(__file__))
+        print(my_absolute_dirpath)
+        catch = 'src\\'
+        length = len('src')
+        end = my_absolute_dirpath.index(catch) + length
+                
+        self.pathStart = my_absolute_dirpath[:end]
+        print(self.pathStart)
+        
+        uic.loadUi(self.pathStart + r'\main\icons\SaveWindow.ui', self) 
         self.setWindowTitle("Save Window")
 
 class Cap_Test(QtWidgets.QMainWindow):
@@ -142,7 +153,7 @@ class Cap_Test(QtWidgets.QMainWindow):
         cap_backend.reset_matrix(self.Instrument_ID)
 
         num_X = int(self.NumProbeLocs.text())
-        num_Y = 1
+        num_Y = math.ceil(num_X/8)
 
         self.tableWidget_CapArray.setRowCount(num_X)
         self.tableWidget_CapArray.setColumnCount(num_Y)   
@@ -181,6 +192,7 @@ class Cap_Test(QtWidgets.QMainWindow):
                 self.ImpArray_arg[1] = self.default_frequency
                 self.ImpArray_arg[2] = self.default_num_meas
                 self.ImpArray_arg[3] = i+1 
+                self.ImpArray_arg[4] = math.ceil(i/8)
 
                 (Cap,Loss) = cap_backend.main(self.ImpArray_arg, self.Instrument_ID)
 
