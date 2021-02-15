@@ -62,7 +62,7 @@ def main(arg, inst_ID):
     voltage = int(arg[0])
     frequency = int(arg[1])
     num = int(arg[2])
-    switch_number = int(arg[3])
+    switch_number = int(arg[3])%8
     channel = int(arg[4])
     make_contact(switch_matrix,channel,switch_number)
     time.sleep(0.5)
