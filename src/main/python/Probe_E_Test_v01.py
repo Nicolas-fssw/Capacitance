@@ -192,7 +192,7 @@ class Cap_Test(QtWidgets.QMainWindow):
                 self.ImpArray_arg[1] = self.default_frequency
                 self.ImpArray_arg[2] = self.default_num_meas
                 self.ImpArray_arg[3] = i%8 + 1 
-                self.ImpArray_arg[4] = math.ceil((i+1)/8))
+                self.ImpArray_arg[4] = math.ceil((i+1)/8)
 
                 (Cap,Loss) = cap_backend.main(self.ImpArray_arg, self.Instrument_ID)
 
