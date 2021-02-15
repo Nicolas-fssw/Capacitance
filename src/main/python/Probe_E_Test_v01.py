@@ -153,7 +153,7 @@ class Cap_Test(QtWidgets.QMainWindow):
         cap_backend.reset_matrix(self.Instrument_ID)
 
         num_X = int(self.NumProbeLocs.text())
-        num_Y = math.ceil(num_X/8)
+        num_Y = 1
 
         self.tableWidget_CapArray.setRowCount(num_X)
         self.tableWidget_CapArray.setColumnCount(num_Y)   
